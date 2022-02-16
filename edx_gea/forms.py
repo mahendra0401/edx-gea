@@ -4,7 +4,6 @@ import os
 from django import forms
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
-from django.forms.util import ErrorList
 from django.utils.translation import get_language, ugettext_lazy, ugettext as _
 
 from student.models import CourseEnrollment
@@ -70,7 +69,7 @@ class UploadAssessmentFileForm(forms.Form):
 
     def add_form_error(self, line, error_description):
         if not self._errors.get('assessment_file'):
-            self._errors['assessment_file'] = ErrorList()
+            self._errors['assessment_file'] = list()
         error_msg = _(u"Line %(line)s: %(error_description)s") % {'line' : line, 'error_description' : error_description}
         self._errors['assessment_file'].append(error_msg)
     
